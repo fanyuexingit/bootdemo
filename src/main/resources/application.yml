@@ -1,0 +1,22 @@
+# 普通
+# 占位符
+name: fanyuexin
+name1: fanyuexin${random.int}
+name2: ${name}
+name3: ${name:default}
+
+
+# 对象
+person:
+  name: fanyuexin
+  age: 3
+
+#person：{name: fanyuexin,age: 3}
+
+# 数组
+pets:
+  - cat
+  - dog
+  - pig
+
+#pets: [cat,dog,pig]
