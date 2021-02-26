@@ -7,6 +7,7 @@ package com.fan.bootdemo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -22,7 +23,8 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/qqq").setViewName("test");
+        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/index.html").setViewName("login");
     }
 
     @Bean
@@ -33,5 +35,10 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
                 return null;
             }
         };
+    }
+
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new MyLocaleResolver();
     }
 }
