@@ -23,6 +23,9 @@
 <form class="form-signin" th:action="@{/login}">
     <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+
+    <label style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></label>
+
 <!--    <label for="inputEmail" class="sr-only" th:text="#{login.username}">Email address</label>-->
     <input type="text" name="username" id="inputEmail" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
 <!--    <label for="inputPassword" class="sr-only" th:text="#{login.password}">Password</label>-->

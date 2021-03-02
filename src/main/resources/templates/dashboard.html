@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0053)https://getbootstrap.com/docs/4.0/examples/dashboard/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -12,16 +12,16 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-    <link href="./Dashboard Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./Dashboard Template for Bootstrap_files/dashboard.css" rel="stylesheet">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
     <style type="text/css">/* Chart.js */
     @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">Company name</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">[[${session.loginSession}]]</a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -262,17 +262,19 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="./Dashboard Template for Bootstrap_files/jquery-slim.min.js.下载"></script>
-<script src="./Dashboard Template for Bootstrap_files/popper.min.js.下载"></script>
-<script src="./Dashboard Template for Bootstrap_files/bootstrap.min.js.下载"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+
 
 <!-- Icons -->
-<script src="./Dashboard Template for Bootstrap_files/feather.min.js.下载"></script>
+<script th:src="@{/js/feather.min.js}"></script>
 <script>
     feather.replace()
 </script>
 
 <!-- Graphs -->
-<script src="./Dashboard Template for Bootstrap_files/Chart.min.js.下载"></script>
+<script th:src="@{/js/Chart.min.js}"></script>
 <script>
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
