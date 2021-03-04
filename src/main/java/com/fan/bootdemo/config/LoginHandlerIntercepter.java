@@ -5,7 +5,6 @@
  */
 package com.fan.bootdemo.config;
 
-import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,15 +18,16 @@ public class LoginHandlerIntercepter implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object loginSession = request.getSession().getAttribute("loginSession");
-
-        if (null == loginSession){
-            request.setAttribute("msg", "请登录");
-            request.getRequestDispatcher("/index.html").forward(request,response);
-            return false;
-        }else {
-            return true;
-        }
+//        Object loginSession = request.getSession().getAttribute("loginSession");
+//
+//        if (null == loginSession){
+//            request.setAttribute("msg", "请登录");
+//            request.getRequestDispatcher("/index.html").forward(request,response);
+//            return false;
+//        }else {
+//            return true;
+//        }
+        return true;
     }
 
     @Override
