@@ -43,6 +43,14 @@ lombok
 MockMvcBuilders
 RequestBuilder
 ```
+### devtools
+```text
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional>
+</dependency>
+```
 ### Swagger2
 ```text
 <dependency>
