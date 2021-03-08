@@ -53,7 +53,7 @@ RequestBuilder
     <optional>true</optional>
 </dependency>
 ```
-### Swagger2
+### Swagger2 /swagger-ui.html
 ```text
 <dependency>
     <groupId>io.springfox</groupId>

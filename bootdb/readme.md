@@ -50,7 +50,7 @@ spring.datasource.druid.maxOpenPreparedStatements=20
 spring.datasource.druid.validationQuery=SELECT 1
 spring.datasource.druid.validation-query-timeout=500
 spring.datasource.druid.filters=stat
-# 数据源 druid 监控
+# 数据源 druid 监控 /druid/index.html
 spring.datasource.druid.stat-view-servlet.enabled=true
 spring.datasource.druid.stat-view-servlet.url-pattern=/druid/*
 spring.datasource.druid.stat-view-servlet.reset-enable=true
