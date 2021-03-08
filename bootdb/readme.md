@@ -1,106 +1,6 @@
-### RESTful API
-```text
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
+# springboot db
 
-@Controller
-@RestController：相当于@Controller + @ResponseBody， Spring4之后加入的注解，默认返回json，
-@RequestMapping：配置url映射,GetMapping、PostMapping、DeleteMapping、PutMapping
-@GetMapping: 相当于@RequestMapping(method = RequestMethod.GET)
-
-```
-lombok
-```text
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-</dependency>
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@EqualsAndHashCode
-```
-### 单元测试
-```text
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-test</artifactId>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <scope>test</scope>
-</dependency>
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-
-MockMvcBuilders
-RequestBuilder
-```
-### devtools
-```text
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-devtools</artifactId>
-    <optional>true</optional>
-</dependency>
-```
-### Swagger2
-```text
-<dependency>
-    <groupId>io.springfox</groupId>
-    <artifactId>springfox-swagger2</artifactId>
-    <version>2.9.2</version>
-</dependency>
-<dependency>
-    <groupId>io.springfox</groupId>
-    <artifactId>springfox-swagger-ui</artifactId>
-    <version>2.9.2</version>
-</dependency>
-或
-<dependency>
-    <groupId>io.springfox</groupId>
-    <artifactId>springfox-boot-starter</artifactId>
-    <version>3.0.0</version>
-</dependency>
-
-@Api(value = "用户操作接口")
-@ApiOperation(value = "获取users", notes="获取users notes")
-@ApiModel(description="用户实体")
-@ApiModelProperty("用户编号")
-@ApiImplicitParam
-
-Docket
-ApiInfo
-```
-### JSR-303 校验
-```text
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-validation</artifactId>
-</dependency>
-或
-<dependency>
-  <groupId>org.hibernate.validator</groupId>
-  <artifactId>hibernate-validator</artifactId>
-  <version>6.1.7.Final</version>
-  <scope>compile</scope>
-</dependency>
-
-@Valid
-@NotNull
-@Size(min = 2, max = 5)
-@Max(100)
-@Min(10)
-@Email
-```
-### JdbcTemplate 简化原生jdbc
+### boot jdbc 框架  JdbcTemplate 简化原生jdbc
 ```text
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -117,7 +17,7 @@ jdbcTemplate.execute()
 jdbcTemplate.update()
 jdbcTemplate.queryXXX()
 ```
-### 数据源 Hikari springboot默认数据源
+### 数据源 Hikari springboot 默认数据源
 ```text
 # 数据源 hikari
 spring.datasource.hikari.minimum-idle=10
@@ -157,7 +57,7 @@ spring.datasource.druid.stat-view-servlet.reset-enable=true
 spring.datasource.druid.stat-view-servlet.login-username=admin
 spring.datasource.druid.stat-view-servlet.login-password=admin
 ```
-### spring-boot-starter-data-jpa
+### 整合 data-jpa 框架
 ```text
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -191,4 +91,79 @@ public interface UserRepository extends JpaRepository<User, Long>{}
 ......
 
 ```
-### RESTful API
+### 整合 mybatis 框架
+```text
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>2.1.1</version>
+</dependency>
+
+@Mapper
+@Select
+@Insert
+@Update
+@Delete
+
+使用@Param传参
+@Insert("INSERT INTO USER(NAME, AGE) VALUES(#{name}, #{age})")
+int insert(@Param("name") String name, @Param("age") Integer age);
+
+使用Map<String, Object>对象来作为传递参数的容器
+@Insert("INSERT INTO USER(NAME, AGE) VALUES(#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})")
+int insertByMap(Map<String, Object> map);
+
+使用普通的Java对象
+@Insert("INSERT INTO USER(NAME, AGE) VALUES(#{name}, #{age})")
+int insertByUser(User user);
+
+返回结果绑定
+需要返回一个与数据库实体不同的包装类，就可以通过@Results和@Result注解来进行绑定
+
+```
+### springboot 中 JDBC JPA Mybatis 的多数据源配置
+```text
+看代码
+```
+### @Transactional
+```text
+在Spring Boot中，当我们使用了spring-boot-starter-jdbc或spring-boot-starter-data-jpa依赖的时候，
+框架会自动默认分别注入DataSourceTransactionManager或JpaTransactionManager。
+所以我们不需要任何额外配置就可以用@Transactional注解进行事务的使用。
+
+通常在service层接口中使用@Transactional来对各个业务逻辑进行事务管理的配置
+
+
+@Transactional
+@Rollback
+
+
+在声明事务时，只需要通过value属性指定配置的事务管理器名即可，
+例如：@Transactional(value="transactionManagerPrimary")
+
+```
+```text
+隔离级别
+@Transactional(isolation = Isolation.DEFAULT)
+DEFAULT：这是默认值，表示使用底层数据库的默认隔离级别。对大部分数据库而言，通常这值就是：READ_COMMITTED。
+READ_UNCOMMITTED：该隔离级别表示一个事务可以读取另一个事务修改但还没有提交的数据。该级别不能防止脏读和不可重复读，因此很少使用该隔离级别。
+READ_COMMITTED：该隔离级别表示一个事务只能读取另一个事务已经提交的数据。该级别可以防止脏读，这也是大多数情况下的推荐值。
+REPEATABLE_READ：该隔离级别表示一个事务在整个过程中可以多次重复执行某个查询，并且每次返回的记录都相同。即使在多次查询之间有新增的数据满足该查询，这些新增的记录也会被忽略。该级别可以防止脏读和不可重复读。
+SERIALIZABLE：所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。但是这将严重影响程序的性能。通常情况下也不会用到该级别。
+```
+```text
+传播行为
+@Transactional(propagation = Propagation.REQUIRED)
+REQUIRED：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
+SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
+MANDATORY：如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。
+REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则把当前事务挂起。
+NOT_SUPPORTED：以非事务方式运行，如果当前存在事务，则把当前事务挂起。
+NEVER：以非事务方式运行，如果当前存在事务，则抛出异常。
+NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于REQUIRED。
+
+```
+
+
+
+

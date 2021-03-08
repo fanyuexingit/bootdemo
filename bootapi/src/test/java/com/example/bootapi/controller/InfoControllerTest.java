@@ -3,9 +3,8 @@
  * @author: Andy
  * @time: 2021/03/05 14:38
  */
-package com.fan.bootdemo.controller;
+package com.example.bootapi.controller;
 
-import com.fan.bootdemo.bootjdbc.InfoController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
