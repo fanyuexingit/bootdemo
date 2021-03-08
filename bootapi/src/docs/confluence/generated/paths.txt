@@ -1,0 +1,379 @@
+
+h2. Paths {anchor:paths}
+
+h3. 删除info {anchor:deleteinfousingpost}
+{noformat}
+POST /info/delete
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Query*|*id*\\ \\ _optional_||id||integer (int64)|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||string|
+|*201*||Created||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Consumes
+
+* {noformat}application/json{noformat}
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 信息tag
+
+
+h3. 获取info {anchor:getinfobyidusingpost}
+{noformat}
+POST /info/getUser
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Query*|*id*\\ \\ _optional_||id||integer (int64)|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||[Info|#info]|
+|*201*||Created||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Consumes
+
+* {noformat}application/json{noformat}
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 信息tag
+
+
+h3. 获取info {anchor:getinfosusingget}
+{noformat}
+GET /info/getUser
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||< [Info|#info] > array|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 信息tag
+
+
+h3. 新增info {anchor:insertinfousingpost}
+{noformat}
+POST /info/insert
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Body*|*info*\\ \\ _required_||info||[Info|#info]|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||string|
+|*201*||Created||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Consumes
+
+* {noformat}application/json{noformat}
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 信息tag
+
+
+h3. 更改info {anchor:updateinfousingpost}
+{noformat}
+POST /info/update
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Body*|*info*\\ \\ _required_||info||[Info|#info]|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||string|
+|*201*||Created||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Consumes
+
+* {noformat}application/json{noformat}
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 信息tag
+
+
+h3. 新增user {anchor:postuserusingpost}
+{noformat}
+POST /user/
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Body*|*user*\\ \\ _required_||user||[User|#user]|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||string|
+|*201*||Created||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Consumes
+
+* {noformat}application/json{noformat}
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 用户tag
+
+
+h3. 获取user {anchor:getusersusingget}
+{noformat}
+GET /user/
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||< [User|#user] > array|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 用户tag
+
+
+h3. 获取user {anchor:getuserbyidusingget}
+{noformat}
+GET /user/{id}
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Path*|*id*\\ \\ _required_||id||integer (int64)|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||[User|#user]|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 用户tag
+
+
+h3. 更改user {anchor:putuserbyidusingput}
+{noformat}
+PUT /user/{id}
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Path*|*id*\\ \\ _required_||用户编号||integer (int64)|
+|*Body*|*user*\\ \\ _required_||user||[User|#user]|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||string|
+|*201*||Created||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+|*404*||Not Found||No Content|
+
+
+h4. Consumes
+
+* {noformat}application/json{noformat}
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 用户tag
+
+
+h3. 删除user {anchor:deleteuserbyidusingdelete}
+{noformat}
+DELETE /user/{id}
+{noformat}
+
+
+h4. Description
+detail notes
+
+
+h4. Parameters
+
+||Type||Name||Description||Schema||
+|*Path*|*id*\\ \\ _required_||id||integer (int64)|
+
+
+h4. Responses
+
+||HTTP Code||Description||Schema||
+|*200*||OK||string|
+|*204*||No Content||No Content|
+|*401*||Unauthorized||No Content|
+|*403*||Forbidden||No Content|
+
+
+h4. Produces
+
+* {noformat}\*/*{noformat}
+
+
+h4. Tags
+
+* 用户tag
+
+
+

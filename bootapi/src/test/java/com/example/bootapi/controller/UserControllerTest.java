@@ -3,16 +3,11 @@
  * @author: Andy
  * @time: 2021/03/04 15:35
  */
-package com.fan.bootdemo.controller;
+package com.example.bootapi.controller;
 
-import com.fan.bootdemo.bootjdbc.User;
-import com.fan.bootdemo.bootjdbc.UserController;
-import com.fan.bootdemo.bootjdbc.UserService;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -35,9 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private MockMvc mvc;
-
-    @Autowired
-    private UserService userSerivce;
 
     @Before
     public void setUp() { }
@@ -108,24 +100,4 @@ public class UserControllerTest {
 
     }
 
-    @Test
-    public void jdbcTemplateTest() throws Exception {
-
-        userSerivce.deleteAllUser();
-
-        for (int i=0; i < 5; i++){
-            User user = new User();
-            user.setId((long) i);
-            user.setName("fan" + i);
-            user.setAge(i);
-            user.setEmail("123@mail.com" + i);
-            userSerivce.createUser(user);
-        }
-
-        User user = userSerivce.getUserById(new Long("3"));
-        Assert.assertEquals("fan3",user.getName());
-
-        Assert.assertEquals(5, userSerivce.getAllUser().size());
-
-    }
 }
