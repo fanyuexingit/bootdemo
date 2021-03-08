@@ -1,0 +1,48 @@
+
+[[_definitions]]
+== Definitions
+
+[[_info]]
+=== Info
+信息实体
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**content** +
+__optional__|信息内容 +
+**Example** : `"我是一只小小鸟"`|string
+|**id** +
+__optional__|信息编号 +
+**Example** : `137`|integer (int64)
+|**type** +
+__optional__|信息类型 +
+**Example** : `"HTML"`|string
+|===
+
+
+[[_user]]
+=== User
+用户实体
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**age** +
+__optional__|用户年龄 +
+**Example** : `17`|integer (int32)
+|**email** +
+__optional__|用户邮箱 +
+**Example** : `"123@mail.com"`|string
+|**id** +
+__optional__|用户编号 +
+**Example** : `137`|integer (int64)
+|**name** +
+__optional__|用户姓名 +
+**Example** : `"fanyuexin"`|string
+|===
+
+
+

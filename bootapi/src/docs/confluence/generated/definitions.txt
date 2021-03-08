@@ -1,0 +1,25 @@
+
+h2. Definitions {anchor:definitions}
+
+h3. Info {anchor:info}
+信息实体
+
+
+||Name||Description||Schema||
+|*content*\\ \\ _optional_||信息内容\\ \\ *Example* : {noformat}"我是一只小小鸟"{noformat}||string|
+|*id*\\ \\ _optional_||信息编号\\ \\ *Example* : {noformat}137{noformat}||integer (int64)|
+|*type*\\ \\ _optional_||信息类型\\ \\ *Example* : {noformat}"HTML"{noformat}||string|
+
+
+h3. User {anchor:user}
+用户实体
+
+
+||Name||Description||Schema||
+|*age*\\ \\ _optional_||用户年龄\\ \\ *Example* : {noformat}17{noformat}||integer (int32)|
+|*email*\\ \\ _optional_||用户邮箱\\ \\ *Example* : {noformat}"123@mail.com"{noformat}||string|
+|*id*\\ \\ _optional_||用户编号\\ \\ *Example* : {noformat}137{noformat}||integer (int64)|
+|*name*\\ \\ _optional_||用户姓名\\ \\ *Example* : {noformat}"fanyuexin"{noformat}||string|
+
+
+
