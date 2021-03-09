@@ -1,5 +1,11 @@
+/**
+ * @description:
+ * @author: Andy
+ * @time: 2021/03/09 10:17
+ */
 package com.example.bootcache;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * Created by fanyuexin on 2021/03/09
+ */
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CacheTest {
+public class RedisTest {
 
     @Autowired
     private UserRepository userRepository;
@@ -28,4 +38,5 @@ public class CacheTest {
         User u2 = userRepository.findByName("AAA");
         System.out.println("第二次查询：" + u2.getAge());
     }
+
 }

@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Cacheable
     User findByName(String name);
 
-    User findByNameAndAge(String name, Integer age);
+    User findByNameAndAgeAndEmail(String name, Integer age, String email);
 
     @Query("from User u where u.name=:name")
     User findUser(@Param("name") String name);

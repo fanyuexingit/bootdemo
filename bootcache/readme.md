@@ -1,16 +1,20 @@
 # springboot base
 
-### spring-boot-starter-cache
+### Spring Boot 默认使用的 ConcurrentMap 缓存
 ```text
+todo 这个包有用吗？没有用 不影响运行呀
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-cache</artifactId>
 </dependency>
 
+本质：
+SimpleCacheConfiguration 利用 ConcurrentHashMap
+
+使用 spring-context 下的注解和类
 @EnableCaching 在Spring Boot主类中增加@EnableCaching注解开启缓存功能
 @CacheConfig(cacheNames = "users")
 @Cacheable 在数据访问接口中，增加缓存配置注解
-
 CacheManager
 
 Cache配置注解详解
@@ -28,5 +32,66 @@ Cache配置注解详解
     allEntries：非必需，默认为false。当为true时，会移除所有数据
     beforeInvocation：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。
 ```
-### 目录结构
-### 配置文件
+### 缓存框架EhCache
+```text
+在Spring Boot中通过 @EnableCaching 注解自动化配置合适的缓存管理器（CacheManager），
+Spring Boot根据下面的顺序去侦测缓存提供者：
+
+Generic
+JCache (JSR-107) (EhCache 3, Hazelcast, Infinispan, and others)
+EhCache 2.x
+Hazelcast
+Infinispan
+Couchbase
+Redis
+Caffeine
+Simple
+
+<dependency>
+    <groupId>net.sf.ehcache</groupId>
+    <artifactId>ehcache</artifactId>
+</dependency>
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd">
+    <cache name="users"
+           maxEntriesLocalHeap="200"
+           timeToLiveSeconds="600">
+    </cache>
+</ehcache>
+
+除了按顺序侦测外，我们也可以通过配置属性spring.cache.type来强制指定。
+我们也可以通过debug调试查看cacheManager对象的实例来判断当前使用了什么缓存。
+当我们不指定具体其他第三方实现的时候，Spring Boot的Cache模块会使用ConcurrentHashMap来存储。
+而实际生产使用的时候，因为我们可能需要更多其他特性，往往就会采用其他缓存框架。
+
+集群使用参考：https://blog.didispace.com/spring-boot-learning-21-5-3/
+
+```
+### redis
+```text
+之前我们介绍了两种进程内缓存的用法，包括Spring Boot默认使用的ConcurrentMap缓存以及缓存框架EhCache。
+虽然EhCache已经能够适用很多应用场景，但是由于EhCache是进程内的缓存框架，在集群模式下时，
+各应用服务器之间的缓存都是独立的，因此在不同服务器的进程间会存在缓存不一致的情况。
+即使EhCache提供了集群环境下的缓存同步策略，但是同步依然是需要一定的时间，短暂的缓存不一致依然存在。
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-pool2</artifactId>
+</dependency>
+
+spring.redis.host=localhost
+spring.redis.port=6379
+spring.redis.lettuce.pool.max-idle=8
+spring.redis.lettuce.pool.max-active=8
+spring.redis.lettuce.pool.max-wait=-1ms
+spring.redis.lettuce.pool.min-idle=0
+spring.redis.lettuce.shutdown-timeout=100ms
+
+
+```
